@@ -1,6 +1,5 @@
 /* ============================================
-   HOME ESPECTACULAR - Diseño Premium
-   Animaciones WOW + Efectos Interactivos
+   HOME ESPECTACULAR - Dise帽o Premium & Responsive
    ============================================ */
 
 :host {
@@ -19,30 +18,31 @@
   --color-border-light: #e5e7eb;
   --gradient-primary: linear-gradient(135deg, #aa9797 0%, #8a7777 50%, #aa9797 100%);
   --gradient-shine: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  
+  /* Sombras y Radios */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.15);
-  --shadow-glow: 0 0 30px var(--color-primary-glow);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
-  --radius-xl: 28px;
 }
 
 /* ============================================
-   HERO SECTION - Impacto Visual Máximo
+   HERO SECTION
    ============================================ */
-
 .hero-section {
+  /* Altura din谩mica: m铆nimo 85vh, pero se adapta si el contenido es alto */
   min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Clave para evitar scroll horizontal en m贸vil */
   background: linear-gradient(135deg, var(--color-background) 0%, var(--color-primary-light) 50%, var(--color-background) 100%);
   background-size: 200% 200%;
   animation: heroBackground 15s ease infinite;
+  padding: 80px 20px; /* Espacio seguro arriba/abajo */
 }
 
 @keyframes heroBackground {
@@ -50,27 +50,7 @@
   50% { background-position: 100% 50%; }
 }
 
-/* Partículas decorativas animadas */
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(170, 151, 151, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(170, 151, 151, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(170, 151, 151, 0.08) 0%, transparent 60%);
-  animation: particlesFloat 20s ease infinite;
-}
-
-@keyframes particlesFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
-}
-
-/* Círculos decorativos flotantes */
+/* Decoraciones de fondo (C铆rculos flotantes) */
 .hero-section::after {
   content: '';
   position: absolute;
@@ -81,6 +61,7 @@
   top: -100px;
   right: -100px;
   animation: circleFloat 10s ease infinite;
+  pointer-events: none; /* Para que no interfiera con clics */
 }
 
 @keyframes circleFloat {
@@ -90,27 +71,16 @@
 
 .hero-content {
   text-align: center;
-  padding: 40px;
   max-width: 800px;
+  width: 100%; /* Asegura que no se salga */
   position: relative;
-  z-index: 1;
-  animation: heroEntry 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
 }
 
-@keyframes heroEntry {
-  from {
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Logo del Hero */
+/* Logo animado */
 .hero-logo {
   width: 120px;
+  max-width: 100%;
   height: auto;
   margin-bottom: 30px;
   filter: drop-shadow(0 10px 30px var(--color-primary-glow));
@@ -118,63 +88,42 @@
 }
 
 @keyframes logoFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-10px) rotate(-3deg); }
-  75% { transform: translateY(-10px) rotate(3deg); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
+/* T脥TULO FLUIDO: Se adapta autom谩ticamente al ancho */
 .hero-content h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem); /* M铆nimo 2rem, ideal 5vw, m谩ximo 3.5rem */
   font-weight: 800;
   color: var(--color-text-default);
   margin: 0 0 20px 0;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  animation: textReveal 0.8s ease backwards;
-  animation-delay: 0.3s;
-}
-
-@keyframes textReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  line-height: 1.2;
+  padding: 0 10px; /* Evita que toque los bordes en m贸vil */
 }
 
 .hero-content .subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--color-text-medium);
-  margin: 0 0 40px 0;
-  line-height: 1.7;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: textReveal 0.8s ease backwards;
-  animation-delay: 0.5s;
+  padding: 0 15px;
 }
 
-/* CTA Buttons */
+/* Botones del Hero */
 .hero-cta {
   display: flex;
   gap: 16px;
   justify-content: center;
-  flex-wrap: wrap;
-  animation: textReveal 0.8s ease backwards;
-  animation-delay: 0.7s;
+  flex-wrap: wrap; /* Permite que bajen uno debajo del otro en m贸vil */
 }
 
 /* ============================================
    BOTONES GLOBALES
    ============================================ */
-
 .btn {
-  padding: 16px 32px;
+  padding: 14px 28px;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 700;
@@ -183,247 +132,117 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
   cursor: pointer;
   border: none;
+  /* Asegura que el bot贸n no se rompa en pantallas muy peque帽as */
+  max-width: 100%; 
+  box-sizing: border-box;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
-  background-size: 200% 200%;
-  animation: gradientMove 4s ease infinite;
   color: var(--color-primary-contrast);
   box-shadow: 0 8px 25px var(--color-primary-glow);
 }
 
-@keyframes gradientMove {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-shine);
-  transition: left 0.6s;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
 .btn-primary:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 
-    0 15px 40px var(--color-primary-glow),
-    0 0 30px var(--color-primary-glow);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px var(--color-primary-glow);
 }
 
 .btn-secondary {
   background: var(--color-background);
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
-  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
   background: var(--color-primary-light);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: var(--shadow-md);
-}
-
-.btn:active {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-3px);
 }
 
 /* ============================================
    SECCIONES GENERALES
    ============================================ */
-
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 24px;
+  padding: 80px 24px; /* Padding lateral seguro */
+  width: 100%;
+  box-sizing: border-box; /* Evita desbordes */
 }
 
 section h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* T铆tulo responsivo */
   font-weight: 800;
   color: var(--color-text-default);
   text-align: center;
   margin: 0 0 15px 0;
-  letter-spacing: -0.5px;
 }
 
 .section-subtitle {
   font-size: 1.1rem;
   color: var(--color-text-medium);
   text-align: center;
-  margin: 0 0 60px 0;
+  margin: 0 auto 60px auto;
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ============================================
-   HOW IT WORKS - Pasos Interactivos
+   C脫MO FUNCIONA (Steps)
    ============================================ */
-
 .how-it-works-section {
   background: var(--color-panel-bg);
   position: relative;
-  overflow: hidden;
-}
-
-.how-it-works-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: var(--color-background);
-  border-radius: 0 0 50% 50%;
-  transform: scaleX(1.5);
+  overflow: hidden; /* Importante */
 }
 
 .steps-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en escritorio */
   gap: 30px;
   position: relative;
 }
 
-/* Línea conectora entre pasos */
-.steps-container::before {
-  content: '';
-  position: absolute;
-  top: 60px;
-  left: 10%;
-  right: 10%;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    var(--color-primary-light), 
-    var(--color-primary), 
-    var(--color-primary-light));
-  z-index: 0;
-}
-
 .step-card {
   background: var(--color-background);
-  border-radius: var(--radius-lg);
-  padding: 40px 25px;
+  border-radius: var(--radius-md);
+  padding: 30px 20px;
   text-align: center;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border-light);
-  position: relative;
-  z-index: 1;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s ease;
+  height: 100%; /* Altura igualada */
 }
 
 .step-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
 }
 
-/* Animación escalonada */
-.step-card:nth-child(1) { animation: cardEntry 0.6s ease backwards; animation-delay: 0.1s; }
-.step-card:nth-child(2) { animation: cardEntry 0.6s ease backwards; animation-delay: 0.2s; }
-.step-card:nth-child(3) { animation: cardEntry 0.6s ease backwards; animation-delay: 0.3s; }
-.step-card:nth-child(4) { animation: cardEntry 0.6s ease backwards; animation-delay: 0.4s; }
-
-@keyframes cardEntry {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== STEP ICONS CORREGIDO ===== */
 .step-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, #ebe8e8 100%);
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  background: var(--color-primary-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  transition: all 0.4s ease;
-}
-
-.step-icon::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  background-size: 200% 200%;
-  animation: gradientMove 4s ease infinite;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.step-card:hover .step-icon::before {
-  opacity: 1;
 }
 
 .step-icon svg {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   color: var(--color-primary);
-  transition: all 0.3s ease;
-  display: block;
-  flex-shrink: 0;
-}
-
-.step-card:hover .step-icon {
-  background: var(--color-background);
-  box-shadow: 0 8px 25px rgba(170, 151, 151, 0.3);
-}
-
-.step-card:hover .step-icon svg {
-  transform: scale(1.15);
-  color: var(--color-primary-hover);
-}
-
-.step-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--color-text-default);
-  margin: 0 0 12px 0;
-}
-
-.step-card p {
-  font-size: 0.95rem;
-  color: var(--color-text-medium);
-  margin: 0;
-  line-height: 1.6;
 }
 
 /* ============================================
-   FEATURES SECTION - Beneficios
+   FEATURES (Beneficios)
    ============================================ */
-
-.features-section {
-  background: var(--color-background);
-}
-
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas escritorio */
   gap: 30px;
 }
 
@@ -435,69 +254,23 @@ section h2 {
   background: var(--color-panel-bg);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-light);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gradient-primary);
-  background-size: 200% 200%;
-  animation: gradientMove 4s ease infinite;
-  transform: scaleY(0);
-  transform-origin: bottom;
   transition: transform 0.3s ease;
 }
 
-.feature-item:hover::before {
-  transform: scaleY(1);
-}
-
 .feature-item:hover {
-  transform: translateX(10px);
-  box-shadow: var(--shadow-md);
   background: var(--color-background);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-3px);
 }
 
 .feature-icon {
   font-size: 2.5rem;
-  flex-shrink: 0;
-  transition: all 0.4s ease;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.2) rotate(10deg);
-}
-
-.feature-text h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--color-text-default);
-  margin: 0 0 8px 0;
-}
-
-.feature-text p {
-  font-size: 0.95rem;
-  color: var(--color-text-medium);
-  margin: 0;
-  line-height: 1.6;
+  line-height: 1;
 }
 
 /* ============================================
-   TESTIMONIALS SECTION - Social Proof
+   TESTIMONIALS
    ============================================ */
-
-.testimonials-section {
-  background: linear-gradient(180deg, var(--color-panel-bg) 0%, var(--color-primary-light) 100%);
-  position: relative;
-}
-
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -507,101 +280,41 @@ section h2 {
 .testimonial-card {
   background: var(--color-background);
   border-radius: var(--radius-lg);
-  padding: 35px;
+  padding: 30px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border-light);
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Comillas decorativas */
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: 20px;
-  left: 25px;
-  font-size: 4rem;
-  font-family: Georgia, serif;
-  color: var(--color-primary-light);
-  line-height: 1;
-  z-index: 0;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .testimonial-card blockquote {
   font-size: 1rem;
   color: var(--color-text-medium);
-  margin: 0 0 25px 0;
-  line-height: 1.7;
   font-style: italic;
-  position: relative;
-  z-index: 1;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
 }
 
 .testimonial-card cite {
-  font-style: normal;
   font-weight: 700;
   color: var(--color-text-default);
-  font-size: 1rem;
-}
-
-.cite-location {
-  font-weight: 400;
-  color: var(--color-primary);
-}
-
-/* Estrellas decorativas */
-.testimonial-card::after {
-  content: '★★★★★';
-  position: absolute;
-  bottom: 35px;
-  right: 25px;
-  font-size: 0.9rem;
-  color: #ffc107;
-  letter-spacing: 2px;
+  font-style: normal;
 }
 
 /* ============================================
-   CTA SECTION - Llamado Final
+   CTA (Call to Action)
    ============================================ */
-
 .cta-section {
   background: var(--gradient-primary);
-  background-size: 200% 200%;
-  animation: gradientMove 4s ease infinite;
   padding: 80px 24px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Efecto shine */
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-shine);
-  animation: shine 5s infinite;
-}
-
-@keyframes shine {
-  0% { left: -100%; }
-  20%, 100% { left: 100%; }
+  color: var(--color-primary-contrast);
 }
 
 .cta-section h2 {
-  color: var(--color-primary-contrast);
-  font-size: 2.2rem;
-  margin: 0 0 30px 0;
-  position: relative;
-  z-index: 1;
+  color: white;
+  margin-bottom: 30px;
 }
 
 .cta-buttons {
@@ -609,169 +322,92 @@ section h2 {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
 }
 
 .cta-section .btn-primary {
   background: var(--color-background);
   color: var(--color-primary);
-  box-shadow: var(--shadow-md);
-}
-
-.cta-section .btn-primary:hover {
-  box-shadow: var(--shadow-lg);
 }
 
 .cta-section .btn-secondary {
   background: transparent;
-  color: var(--color-primary-contrast);
-  border-color: var(--color-primary-contrast);
+  color: white;
+  border-color: white;
 }
 
 .cta-section .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ============================================
-   RESPONSIVE
+   馃摫 RESPONSIVE MEDIA QUERIES (LA CLAVE)
    ============================================ */
 
+/* Tablet (menos de 1024px) */
 @media (max-width: 1024px) {
   .steps-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 col */
   }
-
-  .steps-container::before {
-    display: none;
-  }
-
+  
   .testimonial-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 col */
   }
-
-  .hero-content h1 {
-    font-size: 2.8rem;
+  
+  .testimonial-card:last-child {
+    grid-column: 1 / -1; /* El 煤ltimo ocupa todo el ancho */
   }
 }
 
+/* M贸vil Grande (menos de 768px) */
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 70vh;
+    min-height: auto;
+    padding: 100px 20px 60px;
   }
 
-  .hero-content {
-    padding: 30px 20px;
-  }
-
-  .hero-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-content .subtitle {
-    font-size: 1rem;
-  }
-
-  .hero-logo {
-    width: 100px;
-  }
-
-  .section-container {
-    padding: 70px 20px;
-  }
-
-  section h2 {
-    font-size: 2rem;
-  }
-
+  /* Convertir grids a 1 sola columna */
   .steps-container,
   .features-grid,
   .testimonial-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 columna */
+    gap: 20px;
+  }
+  
+  /* Ajuste de testimonio para que no ocupe 2 espacios en m贸vil */
+  .testimonial-card:last-child {
+    grid-column: auto;
   }
 
+  /* Feature Items en columna */
   .feature-item {
     flex-direction: column;
     text-align: center;
-  }
-
-  .feature-item:hover {
-    transform: translateY(-5px);
-  }
-
-  .feature-item::before {
-    width: 100%;
-    height: 4px;
-    top: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-
-  .feature-item:hover::before {
-    transform: scaleX(1);
-  }
-
-  .hero-cta,
-  .cta-buttons {
-    flex-direction: column;
     align-items: center;
   }
 
-  .btn {
+  /* Botones anchos en m贸vil para facilitar clic */
+  .hero-cta .btn, 
+  .cta-buttons .btn {
     width: 100%;
     max-width: 300px;
   }
-
-  .testimonial-card::after {
-    position: static;
-    display: block;
-    margin-top: 15px;
+  
+  .hero-logo {
+    width: 100px;
   }
 }
 
+/* M贸vil Peque帽o (menos de 480px) */
 @media (max-width: 480px) {
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .step-card {
-    padding: 30px 20px;
-  }
-
-  .step-icon {
-    width: 70px;
-    height: 70px;
-  }
-
-  .step-icon svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .cta-section {
+  .section-container {
     padding: 60px 20px;
   }
-}
-
-/* ============================================
-   ACCESIBILIDAD
-   ============================================ */
-
-.btn:focus-visible,
-.step-card:focus-visible,
-.feature-item:focus-visible,
-.testimonial-card:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
-}
-
-/* Reducir animaciones si el usuario lo prefiere */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  
+  .hero-content h1 {
+    font-size: 2rem; /* Forzar tama帽o menor */
+  }
+  
+  .step-card {
+    padding: 20px;
   }
 }
