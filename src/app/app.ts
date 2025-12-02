@@ -1,9 +1,10 @@
-import { Component, HostListener } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 // Quitamos 'Observable' y 'AuthService' de aquí
-import { HeaderComponent } from './components/header/header';
 import { FooterComponent } from './components/footer/footer';
+import { HeaderComponent } from './components/header/header';
+
 
 @Component({
   selector: 'app-root',
