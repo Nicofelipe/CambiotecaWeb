@@ -1,50 +1,51 @@
 <div class="donate-container">
 
-  <!-- Encabezado -->
-  <div class="donate-header">
-    <div class="icon-heart"><i class="fa-solid fa-heart"></i></div>
-    <h1>Apoya a Cambioteca</h1>
-    <p>Tu aporte nos ayuda a mantener los servidores y seguir fomentando la lectura libre en Chile.</p>
-  </div>
-
-  <!-- Tarjeta de Donación -->
-  <div class="donate-card">
-    <h3>Elige tu aporte</h3>
-
-    <!-- Chips de montos -->
-    <div class="amount-grid">
-      <button ngFor="let m of montosSugeridos" 
-              class="amount-chip" 
-              [class.selected]="monto === m"
-              (click)="seleccionarMonto(m)">
-        ${{ m | number:'1.0-0' }}
-      </button>
+    <!-- Encabezado -->
+    <div class="donate-header">
+        <div class="icon-heart"><i class="fa-solid fa-heart"></i></div>
+        <h1>Apoya a Cambioteca</h1>
+        <p>Tu aporte nos ayuda a mantener los servidores y seguir fomentando la lectura libre en Chile.</p>
     </div>
 
-    <!-- Input personalizado -->
-    <div class="custom-amount">
-      <label>O ingresa otro monto:</label>
-      <div class="input-wrapper">
-        <span class="currency">$</span>
-        <input type="number" [(ngModel)]="monto" min="500" placeholder="2000">
-      </div>
+    <!-- Tarjeta de Donación -->
+    <div class="donate-card">
+        <h3>Elige tu aporte</h3>
+
+        <!-- Chips de montos -->
+        <div class="amount-grid">
+            <button *ngFor="let m of montosSugeridos" class="amount-chip" [class.selected]="monto === m"
+                (click)="seleccionarMonto(m)">
+                ${{ m | number:'1.0-0' }}
+            </button>
+        </div>
+
+        <!-- Input personalizado -->
+        <div class="custom-amount">
+            <label>O ingresa otro monto:</label>
+            <div class="input-wrapper">
+                <span class="currency">$</span>
+                <input type="number" [(ngModel)]="monto" min="500" placeholder="2000">
+            </div>
+        </div>
+
+        <!-- Botón de Pago -->
+        <!-- Botón de Pago -->
+        <button type="button" class="btn-pay" (click)="iniciarPago()" [disabled]="isLoading || monto < 500">
+            <ng-container *ngIf="!isLoading; else loadingBtn">
+                Ir a Webpay <i class="fa-solid fa-arrow-right"></i>
+            </ng-container>
+        </button>
+
+        <ng-template #loadingBtn>
+            <span><i class="fa-solid fa-spinner fa-spin"></i> Procesando...</span>
+        </ng-template>
+
+        <p class="security-note">
+            <i class="fa-solid fa-lock"></i> Pago 100% seguro vía Webpay Plus.
+        </p>
     </div>
-
-    <!-- Botón de Pago -->
-    <button class="btn-pay" (click)="iniciarPago()" [disabled]="isLoading || monto < 500">
-      <spanngIf="!isLoading">Ir a Webpay <i class="fa-solid fa-arrow-right"></i></span>
-      <span *ngIf="isLoading"><i class="fa-solid fa-spinner fa-spin"></i> Procesando...</span>
-    </button>
-
-    <p class="security-note">
-      <i class="fa-solid fa-lock"></i> Pago 100% seguro vía Webpay Plus.
-    </p>
-  </div>
 </div>
 
-<app-notification 
-  *ngIf="notificationMessage" 
-  [message]="notificationMessage" 
-  [type]="notificationType" 
-  (close)="clearNotification()">
+<app-notification *ngIf="notificationMessage" [message]="notificationMessage" [type]="notificationType"
+    (close)="clearNotification()">
 </app-notification>
