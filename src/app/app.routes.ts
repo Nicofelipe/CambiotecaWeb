@@ -1,36 +1,37 @@
 import { Routes } from '@angular/router';
 // ... tus imports de componentes ...
-import { RegisterComponent } from './pages/register/register';
-import { LoginComponent } from './pages/login/login';
-import { BookListComponent } from './pages/book-list/book-list';
-import { ProfileComponent } from './pages/profile/profile';
-import { BookDetailComponent } from './pages/book-detail/book-detail';
-import { MyBooksComponent } from './pages/my-books/my-books';
+import { AboutUsComponent } from './pages/about-us/about-us';
 import { AddBookComponent } from './pages/add-book/add-book';
-import { ChatListComponent } from './pages/chat-list/chat-list';
+import { AdminBookListComponent } from './pages/admin-book-list/admin-book-list';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
+import { AdminUserListComponent } from './pages/admin-user-list/admin-user-list';
+import { BookDetailComponent } from './pages/book-detail/book-detail';
+import { BookListComponent } from './pages/book-list/book-list';
+import { ChangePasswordComponent } from './pages/change-password/change-password';
 import { ChatConversationComponent } from './pages/chat-conversation/chat-conversation';
+import { ChatListComponent } from './pages/chat-list/chat-list';
 import { EditBookComponent } from './pages/edit-book/edit-book';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile';
-import { ReceivedProposalsComponent } from './pages/received-proposals/received-proposals';
-import { HomeComponent } from './pages/home/home';
 import { ExchangeHistoryComponent } from './pages/exchange-history/exchange-history';
-import { ProposalDetailComponent } from './pages/proposal-detail/proposal-detail';
-import { ChangePasswordComponent } from './pages/change-password/change-password';
-import { MeetingPointsComponent } from './pages/meeting-points/meeting-points';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password';
-import { ResetPasswordComponent } from './pages/reset-password/reset-password';
-import { AboutUsComponent } from './pages/about-us/about-us';
-import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
+import { HomeComponent } from './pages/home/home';
+import { LoginComponent } from './pages/login/login';
+import { MeetingPointsComponent } from './pages/meeting-points/meeting-points';
+import { MyBooksComponent } from './pages/my-books/my-books';
+import { ProfileComponent } from './pages/profile/profile';
+import { ProposalDetailComponent } from './pages/proposal-detail/proposal-detail';
 import { ProposalsSentComponent } from './pages/proposals-sent/proposals-sent';
-import { AdminUserListComponent } from './pages/admin-user-list/admin-user-list';
-import { AdminBookListComponent } from './pages/admin-book-list/admin-book-list';
 import { PublicProfileComponent } from './pages/public-profile/public-profile';
+import { ReceivedProposalsComponent } from './pages/received-proposals/received-proposals';
+import { RegisterComponent } from './pages/register/register';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password';
 
 // Guards
-import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
-import { notAdminGuard } from './core/guards/not-admin.guard'; 
+import { authGuard } from './core/guards/auth-guard';
+import { notAdminGuard } from './core/guards/not-admin.guard';
 import { AdminReportsComponent } from './pages/admin-reports/admin-reports';
+import { DonateComponent } from './pages/donate/donate';
 
 export const routes: Routes = [
   // Rutas Públicas (Login/Registro/Home)
@@ -148,6 +149,12 @@ export const routes: Routes = [
     canActivate: [authGuard, notAdminGuard],
     title: 'Mis Libros | Cambioteca'
   },
+  {
+    path: 'donar',
+    component: DonateComponent,
+    canActivate: [notAdminGuard], // Opcional: Para que el Admin no la vea y siga en su panel
+    title: 'Donar | Cambioteca'
+  },
   
   // --- Chat y Propuestas ---
   {
@@ -180,6 +187,7 @@ export const routes: Routes = [
     canActivate: [authGuard, notAdminGuard],
     title: 'Detalle de Propuesta | Cambioteca'
   },
+  
 
   // =========================================================
   // 🛡️ RUTAS DE ADMINISTRADOR

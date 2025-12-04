@@ -1,0 +1,147 @@
+.donate-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.icon-heart {
+  font-size: 3rem;
+  color: var(--color-error); /* Rojo */
+  animation: heartbeat 1.5s infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.donate-header h1 {
+  color: var(--color-text-default);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.donate-header p {
+  color: var(--color-text-medium);
+  margin-bottom: 30px;
+}
+
+/* Tarjeta */
+.donate-card {
+  background: var(--color-background);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.amount-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.amount-chip {
+  background: var(--color-panel-bg);
+  border: 2px solid var(--color-border-light);
+  border-radius: 30px;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-medium);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.amount-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.amount-chip.selected {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* Input Personalizado */
+.custom-amount {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border-light);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 5px;
+  background: var(--color-background);
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.currency {
+  font-size: 1.2rem;
+  color: var(--color-text-medium);
+  margin-right: 5px;
+}
+
+.input-wrapper input {
+  border: none;
+  font-size: 1.2rem;
+  width: 100%;
+  outline: none;
+  background: none;
+  font-weight: 600;
+  color: var(--color-text-default);
+}
+
+/* BotÃ³n Pagar */
+.btn-pay {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #ff914d 0%, #ff6b35 100%); /* Naranja Webpay */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-pay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-pay:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.security-note {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
